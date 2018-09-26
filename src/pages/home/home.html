@@ -1,0 +1,168 @@
+<!-- <ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1><ion-icon name="compass"></ion-icon></ion-col>
+      <ion-col col-8>
+        <input type="text" class="search-input"/>
+        <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button color="danger" clear small>查找</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content class="index-container">
+  <ion-grid>
+    <ion-row class="search-bar">
+      <ion-col col-1 class="location-icon"><ion-icon name="ios-navigate-outline" isActive="false"></ion-icon></ion-col>
+      <ion-col col-8>
+        <input type="text" class="search-input"/>
+          <!-- <ion-searchbar (input)="getItems($event)" class="search-input" ></ion-searchbar> -->
+      </ion-col>
+      <ion-col col-3 class="search-btn-box">
+        <button ion-button class="search-btn">查找</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="slide-contianer">
+    <ion-slides pager="true" autoplay loop="true" speed="500" >
+      <ion-slide *ngFor="let slide of indexProvider.bannerPicArray">
+        <img [src]="slide.image" class="slide-image"/>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="type-bar">
+    <div *ngFor="let cate of indexProvider.category" >
+      <img [src]="cate.image" width="90%" />
+      <span>{{cate.mallCategoryName}}</span>
+    </div>
+  </div>
+  <div class="ad-banner">
+    <img [src]="indexProvider.adBanner" width="100%">
+  </div>
+  <div class="recommend-area">
+    <div class="recommend-title">
+        商品推荐
+    </div>
+    <div class="recommend-body">
+      <ion-slides pager="true" autoplay loop="true" speed="500" >
+        <ion-slide *ngFor="let slide of indexProvider.bannerPicArray">
+          <img [src]="slide.image" class="slide-image"/>
+        </ion-slide>
+      </ion-slides>
+      <!-- <swiper :options="swiperOption">
+        <swiper-slide v-for=" (item ,index) in recommendGoods" :key="index">
+          <div class="recommend-item">
+            <img :src="item.image" width="80%" />
+            <div>{{item.goodsName}}</div>
+            <div>￥{{item.price}} (￥{{item.mallPrice}})</div>
+          </div>
+        </swiper-slide>
+      </swiper> -->
+    </div>
+  </div>
+  <div class="floor">
+    <div class="floor-title">
+      <span>1F</span>{{indexProvider.floorName1}}
+    </div>
+    <div class="floor-anomaly">
+      <div class="floor-one">
+        <img [src]="indexProvider.floor10" width="100%" />
+      </div>
+      <div>
+        <div class="floor-two">
+          <img [src]="indexProvider.floor11" width="100%" />
+        </div>
+        <div>
+          <img [src]="indexProvider.floor12" width="100%" />
+        </div>
+      </div>
+    </div>
+    <div class="floor-rule">
+      <div *ngFor="let item of indexProvider.floorMore1" >
+        <img [src]="item.image" width="100%"/>
+      </div>
+    </div>
+  </div>
+  <div class="floor">
+    <div class="floor-title">
+      <span>2F</span>{{indexProvider.floorName2}}
+    </div>
+    <div class="floor-anomaly">
+      <div class="floor-one">
+        <img [src]="indexProvider.floor20" width="100%" />
+      </div>
+      <div>
+        <div class="floor-two">
+          <img [src]="indexProvider.floor21" width="100%" />
+        </div>
+        <div>
+          <img [src]="indexProvider.floor22" width="100%" />
+        </div>
+      </div>
+    </div>
+    <div class="floor-rule">
+      <div *ngFor="let item of indexProvider.floorMore2" >
+        <img [src]="item.image" width="100%"/>
+      </div>
+    </div>
+  </div>
+  <div class="floor">
+    <div class="floor-title">
+      <span>3F</span>{{indexProvider.floorName3}}
+    </div>
+    <div class="floor-anomaly">
+      <div class="floor-one">
+        <img [src]="indexProvider.floor30" width="100%" />
+      </div>
+      <div>
+        <div class="floor-two">
+          <img [src]="indexProvider.floor31" width="100%" />
+        </div>
+        <div>
+          <img [src]="indexProvider.floor32" width="100%" />
+        </div>
+      </div>
+    </div>
+    <div class="floor-rule">
+      <div *ngFor="let item of indexProvider.floorMore3" >
+        <img [src]="item.image" width="100%"/>
+      </div>
+    </div>
+  </div>
+  <!-- <floor-component [floorData]="indexProvider[floor1]" [floorNum]="1" [floorTitle]="indexProvider.floorName[floor1]"></floor-component> -->
+  <!-- <floor-component [floorData]="indexProvider.floor2" [floorNum]="2" [floorTitle]="indexProvider.floorName[floor2]"></floor-component> -->
+  <!-- <floor-component [floorData]="indexProvider.floor3" [floorNum]="3" [floorTitle]="indexProvider.floorName[floor3]"></floor-component> -->
+  <div class="hot-area">
+    <div class="hot-title">热卖商品</div>
+    <div class="hot-goods">
+      <!--这里需要一个list组件-->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 *ngFor="let item of indexProvider.hotGoods">
+            <div class="goods-info" (click)="goGoodsDetail">
+              <div class="goods-image">
+                <img [src]="item.image" width="90%"/>
+              </div>
+              <div class="goods-name">{{item.name}}</div>
+              <div class="goods-price">￥{{item.price}}</div>
+            </div>
+            <!-- <goods-info :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price" :goodsId="item.goodsId"></goods-info> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <!-- <p>
+    This starter project comes with simple tabs-based layout for apps
+    that are going to primarily use a Tabbed UI.
+  </p>
+  <p>
+    Take a look at the <code>src/pages/</code> directory to add or change tabs,
+    update any existing page or create new pages.
+  </p>
+  <button ion-button [navPush]="detailPage">页面方式跳转</button>
+  <button ion-button (click)="goDetail()">详情页</button> -->
+</ion-content>
